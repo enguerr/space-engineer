@@ -40,15 +40,6 @@ spec:
               mkdir -p /appdata/space-engineers/World; 
               mkdir -p /appdata/space-engineers/Plugins;
               echo "Directory Check Complete";
-              echo "Checking if World exists";
-              if [ ! -f /appdata/space-engineers/World/*.sbc ]; then 
-                echo "World not found, initalizing empty star system..."; 
-                wget https://github.com/mmmaxwwwell/space-engineers-dedicated-docker-linux/blob/main/star-system.zip?raw=true; 
-                unzip star-system.zip?raw=true -d /appdata/space-engineers; 
-                mv /appdata/space-engineers/SpaceEngineers-Dedicated.cfg /appdata/space-engineers/SpaceEngineersDedicated/;
-                chmod -R 777 /appdata;
-                echo "Done"; 
-              fi;
               echo "Complete";
           volumeMounts:
           - name: appdata
@@ -101,6 +92,8 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
           volumeMounts:
           - name: appdata
             mountPath: /appdata
