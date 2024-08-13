@@ -1,4 +1,4 @@
-# Spqce Engineer Helm charts
+# Space Engineer Helm charts
 
 * [space-engineers](space-engineers/)
 
